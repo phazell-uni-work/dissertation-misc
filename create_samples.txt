@@ -1,0 +1,317 @@
+# Not in SQL as idk if it would work in the below format
+
+#--- users table ---
+
+CREATE TABLE patients
+(
+    pid integer NOT NULL ,
+    fname text NOT NULL,
+    sname text NOT NULL,
+    gender text COLLATE pg_catalog."default",
+    diagnosis integer,
+    CONSTRAINT users_pkey PRIMARY KEY (pid)
+);
+
+CREATE TABLE carers
+(
+    cid integer NOT NULL,
+    fname text NOT NULL,
+    sname text NOT NULL,
+    CONSTRAINT carers_pkey PRIMARY KEY (cid)
+);
+
+CREATE TABLE relationships
+(
+    pid integer NOT NULL,
+    cid integer NOT NULL,
+    relationship text,
+    CONSTRAINT rel_pkey PRIMARY KEY (pid,cid),
+    CONSTRAINT rel_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid),
+    CONSTRAINT rel_cid
+      FOREIGN KEY(cid) 
+	  REFERENCES carers(cid)
+);
+
+#--- nms table ---
+
+CREATE TABLE nms
+(
+    nms_id serial NOT NULL ,
+    pid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    nms1 boolean,
+    nms2 boolean,
+    nms3 boolean,
+    nms4 boolean,
+    nms5 boolean,
+    nms6 boolean,
+    nms7 boolean,
+    nms8 boolean,
+    nms9 boolean,
+    nms10 boolean,
+    nms11 boolean,
+    nms12 boolean,
+    nms13 boolean,
+    nms14 boolean,
+    nms15 boolean,
+    nms16 boolean,
+    nms17 boolean,
+    nms18 boolean,
+    nms19 boolean,
+    nms20 boolean,
+    nms21 boolean,
+    nms22 boolean,
+    nms23 boolean,
+    nms24 boolean,
+    nms25 boolean,
+    nms26 boolean,
+    nms27 boolean,
+    nms28 boolean,
+    nms29 boolean,
+    nms30 boolean,
+    nms31 boolean,
+    CONSTRAINT nms_pkey PRIMARY KEY (nms_id),
+    CONSTRAINT fk_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid)
+);
+
+#----------------------------
+#--- pqq8 table ---
+
+CREATE TABLE pdq8
+(
+    pdq8_id serial NOT NULL,
+    pid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    pdq8_1 integer,
+    pdq8_2 integer,
+    pdq8_3 integer,
+    pdq8_4 integer,
+    pdq8_5 integer,
+    pdq8_6 integer,
+    pdq8_7 integer,
+    pdq8_8 integer,
+    CONSTRAINT pdq8_pkey PRIMARY KEY (pdq8_id),
+    CONSTRAINT fk_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid)
+);
+
+COMMENT ON TABLE pdq8
+    IS 'parkinson disease quality of life - 8 questions';
+
+#-----------------------------------------------------------
+#--- pdss table ---
+
+CREATE TABLE pdss
+(
+    pdss_id serial NOT NULL ,
+    pid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    pdss1 integer,
+    pdss2 integer,
+    pdss3 integer,
+    pdss4 integer,
+    pdss5 integer,
+    pdss6 integer,
+    pdss7 integer,
+    pdss8 integer,
+    pdss9 integer,
+    pdss10 integer,
+    pdss11 integer,
+    pdss12 integer,
+    pdss13 integer,
+    pdss14 integer,
+    pdss15 integer,
+    CONSTRAINT pdss_pkey PRIMARY KEY (pdss_id),
+    CONSTRAINT fk_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid)
+);
+
+COMMENT ON TABLE pdss
+    IS 'Parkinsons Disease Sleep Scale';
+
+# --- hads form ---
+
+CREATE TABLE hads
+(
+    hads_id serial NOT NULL,
+    pid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    tense integer,
+    enjoy integer,
+    fright integer,
+    laugh integer,
+    worry integer,
+    cheer integer,
+    ease integer,
+    slow integer,
+    butterfly integer,
+    interest integer,
+    restless integer,
+    forward integer,
+    panic integer,
+    book integer,
+    CONSTRAINT hads_pkey PRIMARY KEY (hads_id),
+    CONSTRAINT fk_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid)
+);
+COMMENT ON TABLE hads
+    IS 'Hospital Anxiety and Depression Score';
+
+# --------------------------------------------------
+#--- pkg ---
+
+CREATE TABLE pkg
+(
+    pkg_id serial NOT NULL,
+    pid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    duration_days integer,
+    bks float,
+    dks float,
+    fds float,
+    pti float,
+    ptt float,
+    CONSTRAINT pkg_pkey PRIMARY KEY (pkg_id),
+    CONSTRAINT fk_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid)
+);
+COMMENT ON TABLE pkg
+    IS 'wearable data';
+
+# --------------------------------------------------
+#--- updrs ---
+
+CREATE TABLE updrs
+(
+    updrs_id serial NOT NULL,
+    pid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    speech integer,
+    saliva integer,
+    chewing integer,
+    eating integer,
+    dressing integer,
+    hygiene integer,
+    handwriting integer,
+    hobbies integer,
+    turning integer,
+    CONSTRAINT updrs_pkey PRIMARY KEY (updrs_id),
+    CONSTRAINT fk_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid)
+);
+COMMENT ON TABLE updrs
+    IS 'Unified Parkinsons Disease Rating Scale';
+
+#------------------------------------------------------
+#--- pdq39 ---
+
+CREATE TABLE pdq39
+(
+    pdq39_id serial NOT NULL,
+    pid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    pdq39_1 integer,
+    pdq39_2 integer,
+    pdq39_3 integer,
+    pdq39_4 integer,
+    pdq39_5 integer,
+    pdq39_6 integer,
+    pdq39_7 integer,
+    pdq39_8 integer,
+    pdq39_9 integer,
+    pdq39_10 integer,
+    pdq39_11 integer,
+    pdq39_12 integer,
+    pdq39_13 integer,
+    pdq39_14 integer,
+    pdq39_15 integer,
+    pdq39_16 integer,
+    pdq39_17 integer,
+    pdq39_18 integer,
+    pdq39_19 integer,
+    pdq39_20 integer,
+    pdq39_21 integer,
+    pdq39_22 integer,
+    pdq39_23 integer,
+    pdq39_24 integer,
+    pdq39_25 integer,
+    pdq39_26 integer,
+    pdq39_27 integer,
+    pdq39_28 integer,
+    pdq39_29 integer,
+    pdq39_30 integer,
+    pdq39_31 integer,
+    pdq39_32 integer,
+    pdq39_33 integer,
+    pdq39_34 integer,
+    pdq39_35 integer,
+    pdq39_36 integer,
+    pdq39_37 integer,
+    pdq39_38 integer,
+    pdq39_39 integer,
+    CONSTRAINT pdq39_pkey PRIMARY KEY (pdq39_id),
+    CONSTRAINT fk_pid
+      FOREIGN KEY(pid) 
+	  REFERENCES patients(pid)
+);
+COMMENT ON TABLE updrs
+    IS 'Unified Parkinsons Disease Rating Scale';
+
+#-------------------------------------------------------
+# --- pdq_carer ----
+CREATE TABLE pdq_carer
+(
+    pdq_c_id serial NOT NULL,
+    cid integer NOT NULL,
+    assessment_number text ,
+    assessment_date date,
+    pdq_c_1 integer,
+    pdq_c_2 integer,
+    pdq_c_3 integer,
+    pdq_c_4 integer,
+    pdq_c_5 integer,
+    pdq_c_6 integer,
+    pdq_c_7 integer,
+    pdq_c_8 integer,
+    pdq_c_9 integer,
+    pdq_c_10 integer,
+    pdq_c_11 integer,
+    pdq_c_12 integer,
+    pdq_c_13 integer,
+    pdq_c_14 integer,
+    pdq_c_15 integer,
+    pdq_c_16 integer,
+    pdq_c_17 integer,
+    pdq_c_18 integer,
+    pdq_c_19 integer,
+    pdq_c_20 integer,
+    pdq_c_21 integer,
+    pdq_c_22 integer,
+    pdq_c_23 integer,
+    pdq_c_24 integer,
+    pdq_c_25 integer,
+    pdq_c_26 integer,
+    pdq_c_27 integer,
+    pdq_c_28 integer,
+    pdq_c_29 integer,
+    CONSTRAINT pdq_c_pkey PRIMARY KEY (pdq_c_id),
+    CONSTRAINT pdq_c_cid
+      FOREIGN KEY(cid) 
+	  REFERENCES carers(cid)
+);
